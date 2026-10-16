@@ -1,0 +1,5 @@
+lab_stage(01)
+lab_demo(s01_easy_hello_threads)
+lab_demo(s01_medium_parallel_sum TEST_ARGS 2000000)
+lab_demo(s01_tough_detach_bugs)
+lab_demo(s01_tough_scoped_thread)

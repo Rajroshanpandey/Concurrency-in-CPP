@@ -1,0 +1,6 @@
+lab_stage(10)
+lab_demo(s10_easy_atomic_max)
+lab_demo(s10_medium_treiber_stack TEST_ARGS 20000)
+lab_demo(s10_tough_aba_demo)
+lab_demo(s10_tough_uaf_pop UNSAFE)
+lab_demo(s10_tough_mpmc_queue TEST_ARGS 100000)

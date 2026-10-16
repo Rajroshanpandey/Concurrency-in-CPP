@@ -1,0 +1,6 @@
+lab_stage(11)
+lab_demo(s11_easy_periodic_drift TEST_ARGS 2)
+lab_demo(s11_medium_jitter TEST_ARGS 2000)
+lab_demo(s11_tough_rt_priority TEST_ARGS 1000)
+lab_demo(s11_tough_priority_inversion)
+lab_demo(s11_tough_rate_monotonic)
