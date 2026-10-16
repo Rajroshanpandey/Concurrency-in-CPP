@@ -1,0 +1,6 @@
+lab_stage(06)
+lab_demo(s06_easy_message_passing TEST_ARGS 20000)
+lab_demo(s06_easy_relaxed_broken RACY TEST_ARGS 20000)
+lab_demo(s06_medium_relaxed_stats)
+lab_demo(s06_tough_spsc_stress TEST_ARGS 300000)
+lab_demo(s06_tough_spsc_broken RACY TEST_ARGS 300000)

@@ -1,0 +1,13 @@
+# ThreadSanitizer suppressions for KNOWN FALSE POSITIVES of the toolchain (not bugs in the lab code).
+# Used automatically by ctest and scripts/lab.sh via TSAN_OPTIONS="suppressions=<repo>/tsan.supp".
+# Intentional races (the *_broken / RACY demos) are NOT suppressed - those reports are the lesson.
+
+# libstdc++ is not TSan-instrumented: the refcount of std::exception_ptr (used by promise::set_exception)
+# looks racy although it is atomic.
+race:std::__future_base::_Result_base::_Deleter
+race:std::__exception_ptr::exception_ptr::_M_release
+
+# GCC 13 + glibc >= 2.30: std::timed_mutex::try_lock_for() calls pthread_mutex_clocklock(), which this
+# TSan does not intercept, so a later unlock() looks like "unlock of an unlocked mutex".
+mutex:std::timed_mutex::unlock
+mutex:std::timed_mutex::try_lock_for

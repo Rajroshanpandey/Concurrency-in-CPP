@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.20)
+project(cpp_concurrency_lab VERSION 1.0.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "" FORCE)
+endif()
+
+# -DLAB_SANITIZE=thread|address|undefined   (empty = none)
+set(LAB_SANITIZE "" CACHE STRING "Sanitizer to enable: thread, address, undefined, or empty")
+set_property(CACHE LAB_SANITIZE PROPERTY STRINGS "" thread address undefined)
+
+find_package(Threads REQUIRED)
+
+# One INTERFACE target that every demo links: include path, warnings, sanitizer.
+add_library(lab_common INTERFACE)
+target_include_directories(lab_common INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/common/include)
+target_link_libraries(lab_common INTERFACE Threads::Threads)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(lab_common INTERFACE -Wall -Wextra -Wno-unused-parameter)
+endif()
+if(LAB_SANITIZE)
+  message(STATUS "Sanitizer enabled: ${LAB_SANITIZE}")
+  target_compile_options(lab_common INTERFACE -fsanitize=${LAB_SANITIZE} -fno-omit-frame-pointer -g)
+  target_link_options(lab_common INTERFACE -fsanitize=${LAB_SANITIZE})
+endif()
+
+include(cmake/LabHelpers.cmake)
+enable_testing()
+
+add_subdirectory(stages/01_threads)
+add_subdirectory(stages/02_race_conditions)
+add_subdirectory(stages/03_mutexes)
+add_subdirectory(stages/04_condition_variables)
+add_subdirectory(stages/05_atomics)
+add_subdirectory(stages/06_memory_ordering)
+add_subdirectory(stages/07_futures_promises)
+add_subdirectory(stages/08_thread_pool)
+add_subdirectory(stages/09_jthread_stop_token)
+add_subdirectory(stages/10_lock_free)
+add_subdirectory(stages/11_realtime)
+add_subdirectory(stages/12_capstone_mini_ecu)
+add_subdirectory(playground)

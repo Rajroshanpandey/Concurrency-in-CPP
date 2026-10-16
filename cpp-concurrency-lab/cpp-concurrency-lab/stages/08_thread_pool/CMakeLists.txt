@@ -1,0 +1,6 @@
+lab_stage(08)
+lab_demo(s08_easy_single_worker)
+lab_demo(s08_medium_pool)
+lab_demo(s08_tough_pool_futures)
+lab_demo(s08_tough_nested_starvation)
+lab_demo(s08_tough_benchmark TEST_ARGS 5000)

@@ -1,0 +1,5 @@
+lab_stage(04)
+lab_demo(s04_easy_busy_vs_cv)
+lab_demo(s04_medium_blocking_queue)
+lab_demo(s04_tough_producers_consumers TEST_ARGS 30000)
+lab_demo(s04_tough_lost_wakeup)

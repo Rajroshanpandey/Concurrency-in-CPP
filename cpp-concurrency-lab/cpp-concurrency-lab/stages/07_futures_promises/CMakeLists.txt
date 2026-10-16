@@ -1,0 +1,4 @@
+lab_stage(07)
+lab_demo(s07_easy_async_fib)
+lab_demo(s07_medium_promise_exception)
+lab_demo(s07_tough_parallel_merge_sort TEST_ARGS 100000)
